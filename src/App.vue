@@ -5,7 +5,7 @@
 </template>
 
 <style lang="less">
-h1,h2,h3, a, div, p, span {
+h1,h2,h3, a, div, p, span, input {
   font-family: 'Alegreya', serif
 }
 #app {

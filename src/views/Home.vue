@@ -16,6 +16,7 @@
       <v-table></v-table>
     </div>
     <div class="line_pretty"></div>
+    <v-search></v-search>
     <v-content></v-content>
   </div>
 </template>
@@ -23,11 +24,13 @@
 <script>
 import Table from '@/components/table.vue'
 import Content from '@/views/Content.vue'
+import SearchBar from '@/components/SearchBar.vue'
 
 export default {
   components: {
     'v-table': Table,
-    'v-content': Content
+    'v-content': Content,
+    'v-search' : SearchBar
   }
 };
 </script>

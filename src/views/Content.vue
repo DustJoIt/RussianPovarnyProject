@@ -4,7 +4,6 @@
       <article class="content__element">
         <h1 class="content__element__title">Известие.</h1>
         <p class="content__element__text">
-          <!-- TODO : ССЫЛКИ ОФОРМИМТЬ -->
           Знакомство с 
           <popup :popupText="'Сейчас, видимо, нужно понимать как «с иностранными людьми» или как «с иностранцами». — Примечание редактора Викитеки.'">
             иностранными</popup>, по временам у нас начинавшееся, действовало тем же образом, как на чистоту русских нравов, и на вкус стола. Простые, из отечественных произведений состоявшие приготовления пищи должны были уступить чужеземным, многосложным, хотя с великими околичностями изобретенным, убыточным, многими несвойственными нам приправами набитым, но зато и вредным здоровью приготовлениям, так что даже сведение о русских блюдах почти совсем истребилось. Не можно посему представить здесь полного описания Русской Поварни, и должно будет довольствоваться только тем, что можно было собрать из оставшегося в памяти: ибо история Русской Поварни, не так как других европейских, никогда не предана была ни описанию, ни тиснению.
@@ -21,7 +20,10 @@
         Вышеописанному понятию следуя, опишем здесь столы мясоедный и постный, разделяя оные на четыре подачи, как уже сказано.
         </p>
       </article>
+
+      <h1 class="content__grand-title">Стол в мясоед.</h1>
       <h1 class="content__grand-title">Первая подача, содержащая холодные кушанья.</h1>
+      
       <article class="content__element">
         <h1 id="okorok_vetchiny" class="content__element__title">Окорок ветчины.</h1>
         <p class="content__element__text">
@@ -84,7 +86,7 @@
         </p>
       </article>
       <article class="content__element">
-        <h1 class="content__element__title">Студень свиная со сметаною и хреном.</h1>
+        <h1 class="content__element__title">Студень свиной со сметаною и хреном.</h1>
         <p class="content__element__text">
           К оной отнимаются те же части, что и к говяжей студени. 
           Очистить оные по обыкновенному, каждую ногу разнять вдоль надвое и отварить в воде мягко.
@@ -334,31 +336,6 @@
           Подавать, забелив сметаною
         </p>
       </article>
-      <article class="content__element">
-        <h1 class="content__element__title"></h1>
-        <p class="content__element__text">
-        </p>
-      </article>
-      <article class="content__element">
-        <h1 class="content__element__title"></h1>
-        <p class="content__element__text">
-        </p>
-      </article>
-      <article class="content__element">
-        <h1 class="content__element__title"></h1>
-        <p class="content__element__text">
-        </p>
-      </article>
-      <article class="content__element">
-        <h1 class="content__element__title"></h1>
-        <p class="content__element__text">
-        </p>
-      </article>
-      <article class="content__element">
-        <h1 class="content__element__title"></h1>
-        <p class="content__element__text">
-        </p>
-      </article>
       <!-- <article class="content__element">
         <h1 class="content__element__title"></h1>
         <p class="content__element__text">
@@ -383,11 +360,12 @@ export default {
   },
   mounted: function() {
     // Создать все уникальный индектификаторы
-    let titles = this.$el.getElementsByClassName('content__element__title')
+    let titles = this.$el.querySelectorAll('.content__element__title, .content__grand-title')
     for (var i = 0; i < titles.length; i++) {
       let title_id = titles[i].innerHTML
-      title_id = title_id.replace(/(\.|,)/g, '')
-      titles[i].id = title_id.replace(/ /g, '_')
+      title_id = title_id.replace(/(\.|,)/g, '').replace(/ /g, '_').toLowerCase()
+      title_id = title_id[0].toUpperCase() + title_id.slice(1)
+      titles[i].id = title_id
     }
 
     // В ответ на linkJump ивент подсветить выбранный
@@ -403,20 +381,25 @@ export default {
 </script>
 
 <style lang="less">
+.selected_mixin() {
+  transition: 300ms;
+  &_selected {
+    background-color: yellow;
+  }
+}
 .content__grand-title {
   text-align: center;
   font-weight: 100;
   text-transform: uppercase;
   font-size: 26px;
+  .selected_mixin();
 }
+
 .content__element__title {
   // margin-left: 10px;
   font-size: 24px;
   text-transform: uppercase;
-  transition: 300ms;
-  &_selected {
-    background-color: yellow;
-  }
+  .selected_mixin();
 }
 .content__element__text {
   font-size: 19.5px;

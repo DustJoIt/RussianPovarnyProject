@@ -4,7 +4,7 @@
 
 const table_contents = [
   {
-    name: "Известие",
+    name: "Известие.",
   },
   {
     name: "Стол в мясоед.",
